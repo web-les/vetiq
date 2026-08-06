@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies | Vetiq</title>
+    <link rel="icon" type="image/png" href="web_icon.PNG">
+    <link rel="apple-touch-icon" href="apple-touch-icon.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-mint: #73C7C2;
+            --brand-mint-hover: #5eb5b0;
+            --brand-yellow: #FDE080;
+            --brand-yellow-hover: #fcd55c;
+            --bg-light: #F5F8F8;
+            --text-dark: #2B3839;
+            --text-muted: #667778;
+            --white: #FFFFFF;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --radius-card: 20px;
+            --radius-btn: 30px;
+            --shadow-soft: 0 10px 30px rgba(115, 199, 194, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-dark); }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 100%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER & NAVIGACE */
+        .header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--brand-mint);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--brand-mint); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-yellow {
+            background-color: var(--brand-yellow);
+            color: var(--text-dark);
+        }
+
+        .btn-yellow:hover {
+            background-color: var(--brand-yellow-hover);
+        }
+
+        /* HERO SEKCE */
+        .page-hero {
+            background: linear-gradient(135deg, var(--brand-mint) 0%, #5eb5b0 100%);
+            color: var(--white);
+            padding: 50px 0;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: 40px;
+        }
+
+        .page-hero h1 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .page-hero p {
+            font-size: 1rem;
+            color: #f0faf9;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* DOKUMENT OBSAH */
+        .legal-content-card {
+            background: var(--white);
+            border-radius: var(--radius-card);
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 60px;
+        }
+
+        .effective-date {
+            display: inline-block;
+            background: #eef8f7;
+            color: var(--brand-mint-hover);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .legal-section {
+            margin-bottom: 35px;
+            border-bottom: 1px solid #edf4f4;
+            padding-bottom: 30px;
+        }
+
+        .legal-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .legal-section h2 {
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-section h2 i {
+            color: var(--brand-mint);
+            font-size: 1.2rem;
+        }
+
+        .legal-section p {
+            margin-bottom: 12px;
+            color: #4a595a;
+            font-size: 0.95rem;
+        }
+
+        /* COOKIE PREFERENCES BOX */
+        .cookie-preference-group {
+            background: #f8fcff;
+            border: 1px solid #e0eceb;
+            border-radius: 16px;
+            padding: 20px;
+            margin: 15px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cookie-info {
+            max-width: 80%;
+        }
+
+        .cookie-info h4 {
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+        }
+
+        .cookie-info p {
+            font-size: 0.88rem;
+            margin-bottom: 0;
+            color: #667778;
+        }
+
+        /* TOGGLE SWITCH */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 52px;
+            height: 28px;
+        }
+
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: #cbd5e1;
+            transition: .3s;
+            border-radius: 34px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked + .slider {
+            background-color: var(--brand-mint);
+        }
+
+        input:checked + .slider:before {
+            transform: translateX(24px);
+        }
+
+        input:disabled + .slider {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .cookie-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+            flex-wrap: wrap;
+        }
+
+        /* FOOTER */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--brand-mint);
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #a0b0b1;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-mint);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3d4f50;
+            color: #a0b0b1;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .legal-content-card { padding: 30px 20px; }
+            .cookie-preference-group { flex-direction: column; align-items: flex-start; gap: 15px; }
+            .cookie-info { max-width: 100%; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> Vetiq
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="cenik.html">Ceník</a></li>
+                <li><a href="o-nas.html">Kontakt</a></li>
+                <li><a href="sjednani.html" class="btn btn-yellow">Registrovat & Pojistit</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <h1>Nastavení a Zásady používání Cookies</h1>
+            <p>Informace o tom, jak na portálu Vetiq používáme soubory cookies a jak můžete spravovat své preference.</p>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="legal-content-card">
+            <span class="effective-date"><i class="fa-solid fa-cookie-bite" style="margin-right: 6px;"></i> Aktualizováno dle ePrivacy a GDPR | Účinnost od 1. 1. 2026</span>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-circle-info"></i> 1. Co jsou to soubory cookies?</h2>
+                <p>Soubory cookie jsou malé textové soubory, které se ukládají do vašeho prohlížeče nebo zařízení při návštěvě našich webových stránek. Pomáhají nám zajišťovat správné fungování portálu, zapamatovat si vaše předvolby při registraci zvířete (Vetiq ID) a neustále zlepšovat uživatelskou přívětivost.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-sliders"></i> 2. Správa a nastavení předvoleb cookies</h2>
+                <p>Níže můžete upravit své preference pro různé kategorie cookies. Změny se uloží okamžitě pro tento prohlížeč.</p>
+
+                <div class="cookie-preference-group">
+                    <div class="cookie-info">
+                        <h4>Nezbytné cookies (Technické)</h4>
+                        <p>Tyto cookies jsou nutné pro správný chod webu, fungování registračního formuláře Vetiq a zabezpečení relace. Nelze je vypnout.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked disabled>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="cookie-preference-group">
+                    <div class="cookie-info">
+                        <h4>Analytické a výkonnostní cookies</h4>
+                        <p>Umožňují nám anonymně sledovat návštěvnost a způsob využívání portálu, abychom mohli zlepšovat sjednávací proces a rychlost aplikace.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="cookie-analytics" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="cookie-preference-group">
+                    <div class="cookie-info">
+                        <h4>Marketingové a personalizační cookies</h4>
+                        <p>Slouží k zobrazení relevantních nabídek pojištění a novinek ze světa péče o domácí mazlíčky na základě vašich zájmů.</p>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" id="cookie-marketing">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+
+                <div class="cookie-actions">
+                    <button class="btn btn-yellow" onclick="saveCookiePreferences()">Uložit moji volbu</button>
+                    <button class="btn" style="background: #eef8f7; color: var(--brand-mint-hover);" onclick="acceptAllCookies()">Povolit vše</button>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-browser"></i> 3. Jak blokovat cookies přímo v prohlížeči</h2>
+                <p>Soubory cookies můžete také kompletně odmítnout nebo vymazat v nastavení vašeho internetového prohlížeče (Google Chrome, Safari, Mozilla Firefox, Microsoft Edge apod.). Upozorňujeme však, že deaktivace nezbytných cookies může omezit funkčnost sjednávacího procesu Vetiq.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer" id="kontakt">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><i class="fa-solid fa-heart-pulse"></i> Vetiq</div>
+                    <p style="color: #a0b0b1; margin-bottom: 15px;">
+                        Vetiq. Nejlepší přítel toho vašeho. Oficiální registr a technologická pojišťovna pro všechny domácí mazlíčky.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Důležité odkazy</h4>
+                    <ul>
+                        <li><a href="obchodni-podminky.html">Obchodní podmínky (VOP)</a></li>
+                        <li><a href="pojistne-podminky.html">Pojistné podmínky (VPP & IPID)</a></li>
+                        <li><a href="gdpr.html">Ochrana osobních údajů (GDPR)</a></li>
+                        <li><a href="cookies.html">Nastavení Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info.vetiq@email.cz</li>
+                        <li><i class="fa-solid fa-phone"></i> +420 725 398 913</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Praha, Česká republika</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Vetiq Insurance Technologies s.r.o. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function saveCookiePreferences() {
+            let analytics = document.getElementById('cookie-analytics').checked;
+            let marketing = document.getElementById('cookie-marketing').checked;
+            alert('Vaše nastavení cookies bylo úspěšně uloženo.');
+        }
+
+        function acceptAllCookies() {
+            document.getElementById('cookie-analytics').checked = true;
+            document.getElementById('cookie-marketing').checked = true;
+            alert('Všechny soubory cookies byly povoleny.');
+        }
+    </script>
+</body>
+</html>

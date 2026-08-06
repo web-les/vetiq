@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetiq | Nejlepší přítel toho vašeho</title>
+    <link rel="icon" type="image/png" href="web_icon.PNG">
+    <link rel="apple-touch-icon" href="apple-touch-icon.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* ==========================================================================
+           1. BAREVNÁ PALETA & PROMĚNNÉ (VETIQ BRANDING)
+           ========================================================================== */
+        :root {
+            --brand-mint: #73C7C2;       /* Hlavní zelenomodrá pastelová barva */
+            --brand-mint-hover: #5eb5b0; /* Tmavší odstín pro efekty hover */
+            --brand-yellow: #FDE080;     /* Akcentní pastelově žlutá */
+            --brand-yellow-hover: #fcd55c;
+            --bg-light: #F5F8F8;         /* Světlounká medicínská šedá */
+            --text-dark: #2B3839;        /* Tmavě grafitová pro skvělou čitelnost */
+            --text-muted: #667778;       /* Jemná šedá pro sekundární texty */
+            --white: #FFFFFF;
+            
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            
+            --radius-card: 20px;
+            --radius-btn: 30px;
+            --shadow-soft: 0 10px 30px rgba(115, 199, 194, 0.15);
+        }
+
+        /* ==========================================================================
+           2. BASE STYLES & RESET
+           ========================================================================== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: var(--font-heading);
+            color: var(--text-dark);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Tlačítka */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px 28px;
+            border-radius: var(--radius-btn);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            text-decoration: none;
+        }
+
+        .btn-yellow {
+            background-color: var(--brand-yellow);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(253, 224, 128, 0.4);
+        }
+
+        .btn-yellow:hover {
+            background-color: var(--brand-yellow-hover);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 2px solid var(--white);
+            color: var(--white);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--white);
+            color: var(--brand-mint);
+        }
+
+        /* ==========================================================================
+           3. HEADER & NAVIGACE
+           ========================================================================== */
+        .header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--brand-mint);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--brand-mint);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* ==========================================================================
+           4. HERO SEKCE
+           ========================================================================== */
+        .hero {
+            background: linear-gradient(135deg, var(--brand-mint) 0%, #8ee0db 100%);
+            color: var(--white);
+            padding: 60px 0 80px 0;
+            position: relative;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            color: var(--white);
+            margin-bottom: 10px;
+        }
+
+        .hero-slogan {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--brand-yellow);
+            margin-bottom: 20px;
+        }
+
+        .hero-text {
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+
+        /* Nová informativní karta v Hero sekci */
+        .hero-info-card {
+            background: var(--white);
+            padding: 35px 30px;
+            border-radius: var(--radius-card);
+            box-shadow: var(--shadow-soft);
+            color: var(--text-dark);
+        }
+
+        .hero-info-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .pet-info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .pet-info-item {
+            background-color: var(--bg-light);
+            border-radius: 12px;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .pet-info-item i {
+            font-size: 1.6rem;
+            color: var(--brand-mint);
+        }
+
+        .pet-info-item div strong {
+            display: block;
+            font-size: 0.9rem;
+        }
+
+        .pet-info-item div span {
+            font-size: 0.75rem;
+            color: var(--text-muted);
+        }
+
+        .register-badge-info {
+            background-color: var(--bg-light);
+            padding: 12px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* ==========================================================================
+           5. VETIQ REGISTR A DOKLADY
+           ========================================================================== */
+        .registration-section {
+            padding: 80px 0 40px 0;
+            background-color: var(--white);
+        }
+
+        .reg-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .reg-card-preview {
+            background: linear-gradient(135deg, #2B3839 0%, #1e2829 100%);
+            border-radius: 20px;
+            padding: 30px;
+            color: var(--white);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+            position: relative;
+            border: 2px solid var(--brand-mint);
+        }
+
+        .reg-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            padding-bottom: 15px;
+        }
+
+        .reg-card-logo {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            font-weight: 800;
+            color: var(--brand-mint);
+        }
+
+        .reg-card-body {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 20px;
+        }
+
+        .reg-info p {
+            font-size: 0.8rem;
+            color: #a0b0b1;
+            margin-bottom: 2px;
+        }
+
+        .reg-info h4 {
+            color: var(--white);
+            font-size: 1.1rem;
+            margin-bottom: 12px;
+        }
+
+        .qr-placeholder {
+            background: var(--white);
+            padding: 10px;
+            border-radius: 12px;
+            text-align: center;
+            color: var(--text-dark);
+            font-size: 0.7rem;
+            font-weight: 700;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .qr-placeholder i {
+            font-size: 2.5rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+        }
+
+        /* ==========================================================================
+           6. VERIFIKACE & KONTROLA (PHOTO-ID & CHECK-IN)
+           ========================================================================== */
+        .verification-section {
+            padding: 40px 0 80px 0;
+            background-color: var(--white);
+        }
+
+        .verification-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-top: 40px;
+        }
+
+        .step-card {
+            background-color: var(--bg-light);
+            border-radius: var(--radius-card);
+            padding: 30px 20px;
+            position: relative;
+            border: 1px solid #e2ebeb;
+        }
+
+        .step-number {
+            position: absolute;
+            top: -15px;
+            left: 20px;
+            background-color: var(--brand-mint);
+            color: var(--white);
+            font-family: var(--font-heading);
+            font-weight: 800;
+            font-size: 0.9rem;
+            padding: 4px 12px;
+            border-radius: 10px;
+        }
+
+        .step-card h3 {
+            font-size: 1.1rem;
+            margin: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .step-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ==========================================================================
+           7. VÝHODY (WHY VETIQ)
+           ========================================================================== */
+        .features {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 50px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: var(--radius-card);
+            text-align: center;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-icon {
+            width: 70px;
+            height: 70px;
+            background-color: var(--bg-light);
+            color: var(--brand-mint);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px auto;
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* ==========================================================================
+           8. CENNÍK / BALÍČKY
+           ========================================================================== */
+        .pricing {
+            background-color: var(--white);
+            padding: 80px 0;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .price-card {
+            border: 2px solid var(--bg-light);
+            border-radius: var(--radius-card);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            background: var(--white);
+        }
+
+        .price-card.popular {
+            border-color: var(--brand-mint);
+            box-shadow: var(--shadow-soft);
+        }
+
+        .badge {
+            position: absolute;
+            top: -15px;
+            right: 20px;
+            background: var(--brand-yellow);
+            color: var(--text-dark);
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .price-header h3 {
+            font-size: 1.5rem;
+        }
+
+        .price-amount {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--brand-mint);
+            margin: 15px 0;
+        }
+
+        .price-amount span {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-muted);
+        }
+
+        .price-features {
+            list-style: none;
+            margin: 20px 0 30px 0;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features i {
+            color: var(--brand-mint);
+        }
+
+        /* ==========================================================================
+           9. FOOTER
+           ========================================================================== */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--brand-mint);
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #a0b0b1;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-mint);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3d4f50;
+            color: #a0b0b1;
+            font-size: 0.85rem;
+        }
+
+        /* ==========================================================================
+           10. RESPONSIVITA
+           ========================================================================== */
+        @media (max-width: 992px) {
+            .hero-grid, .features-grid, .pricing-grid, .reg-grid, .verification-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-title {
+                font-size: 2.3rem;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero {
+                padding: 40px 0 60px 0;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+
+            .pet-info-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> Vetiq
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="cenik.html">Ceník</a></li>
+                <li><a href="o-nas.html">Kontakt</a></li>
+                <li><a href="sjednani.html" class="btn btn-yellow" style="padding: 10px 20px;">Registrovat & Pojistit</a></li>
+            </ul>
+            <button class="mobile-menu-btn">
+                <i class="fa-solid fa-bars"></i>
+            </button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <h1 class="hero-title">Vetiq.</h1>
+                <div class="hero-slogan">Nejlepší přítel toho vašeho.</div>
+                <p class="hero-text">
+                    Oficiální registr a exkluzivní pojištění pro psy, kočky, králíky i drobné mazlíčky. Získejte pro svého parťáka Vetiq doklady s okamžitým ověřením u každého veterináře.
+                </p>
+                <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                    <a href="sjednani.html" class="btn btn-yellow">Registrovat & Pojistit <i class="fa-solid fa-arrow-right" style="margin-left: 8px;"></i></a>
+                    <a href="#registr" class="btn btn-outline">Jak funguje doklad?</a>
+                </div>
+            </div>
+
+            <div class="hero-info-card">
+                <h3>Které mazlíčky pojišťujeme?</h3>
+                <p style="text-align: center; color: var(--text-muted); font-size: 0.9rem;">
+                    Jako první systém v ČR kryjeme péči bez ohledu na velikost či přítomnost čipu.
+                </p>
+
+                <div class="pet-info-grid">
+                    <div class="pet-info-item">
+                        <i class="fa-solid fa-dog"></i>
+                        <div>
+                            <strong>Psi</strong>
+                            <span>Všechna plemena & voříšci</span>
+                        </div>
+                    </div>
+                    <div class="pet-info-item">
+                        <i class="fa-solid fa-cat"></i>
+                        <div>
+                            <strong>Kočky</strong>
+                            <span>Bytové i venkovní</span>
+                        </div>
+                    </div>
+                    <div class="pet-info-item">
+                        <i class="fa-solid fa-paw"></i>
+                        <div>
+                            <strong>Králíci</strong>
+                            <span>Zakrslí i velcí</span>
+                        </div>
+                    </div>
+                    <div class="pet-info-item">
+                        <i class="fa-solid fa-shield-cat"></i>
+                        <div>
+                            <strong>Hlodavci</strong>
+                            <span>Křečci, morčata, potkani</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="register-badge-info">
+                    <i class="fa-solid fa-certificate" style="color: var(--brand-mint); font-size: 1.4rem;"></i>
+                    <span>Sjednání probíhá na základě <strong>Vetiq ID (Photo-ID)</strong> nebo mikročipu.</span>
+                </div>
+
+                <a href="sjednani.html" class="btn btn-yellow" style="width: 100%;">Získat Vetiq ID & Pojistit</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="registration-section" id="registr">
+        <div class="container">
+            <div class="reg-grid">
+                <div>
+                    <h2 class="section-title" style="text-align: left;">Oficiální doklady Vetiq pro bezstarostnou péči</h2>
+                    <p style="color: var(--text-muted); margin-bottom: 25px;">
+                        Každé zvířátko pojištěné u nás projde evidencí v <strong>Centrálním registru Vetiq</strong>. Majitel obdrží fyzický i digitální zvířecí doklad. 
+                    </p>
+                    <ul style="list-style: none; margin-bottom: 30px;">
+                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--brand-mint); font-size: 1.2rem;"></i>
+                            <span><strong>Veterinář ihned ví:</strong> Skenem QR kódu z dokladu veterinář v sekundě vidí garanci platby a limity.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--brand-mint); font-size: 1.2rem;"></i>
+                            <span><strong>Platí i pro hlodavce a králíky:</strong> I křeček bez mikročipu dostane unikátní Vetiq ID a oficiální kartu.</span>
+                        </li>
+                        <li style="margin-bottom: 15px; display: flex; gap: 12px; align-items: center;">
+                            <i class="fa-solid fa-circle-check" style="color: var(--brand-mint); font-size: 1.2rem;"></i>
+                            <span><strong>Nulová administrativa:</strong> Žádné vyplňování formulářů na místě. Doklad mluví za vás.</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="reg-card-preview">
+                    <div class="reg-card-header">
+                        <div class="reg-card-logo">
+                            <i class="fa-solid fa-heart-pulse"></i> VETIQ PAS
+                        </div>
+                        <span style="background: var(--brand-yellow); color: var(--text-dark); font-size: 0.7rem; font-weight: 800; padding: 4px 10px; border-radius: 10px;">VERIFIKOVÁNO</span>
+                    </div>
+                    <div class="reg-card-body">
+                        <div class="reg-info">
+                            <p>Jméno mazlíčka</p>
+                            <h4>Max</h4>
+                            
+                            <p>Vetiq Registrační ID</p>
+                            <h4>CZ-XYXYXX-VETIQ</h4>
+
+                            <p>Stav pojištění</p>
+                            <h4 style="color: var(--brand-mint);">AKTIVNÍ</h4>
+                        </div>
+                        <div class="qr-placeholder">
+                            <i class="fa-solid fa-qrcode"></i>
+                            <span>SKEN PRO VETERINÁŘE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="verification-section" id="verifikace">
+        <div class="container">
+            <h2 class="section-title">Poctivý systém bez podvodů a sporných situací</h2>
+            <p class="section-subtitle">Díky trojité verifikaci identity mají všichni veterináři 100% jistotu, že kryjeme právě vašeho mazlíčka.</p>
+
+            <div class="verification-grid">
+                <div class="step-card">
+                    <div class="step-number">KROK 1</div>
+                    <h3><i class="fa-solid fa-camera" style="color: var(--brand-mint);"></i> Vetiq Photo-ID</h3>
+                    <p>Při online sjednání nahrajete do systému 3 rychlé snímky zvířete (celé tělo, obličej a fotku na váze). Žádné složité papírování.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">KROK 2</div>
+                    <h3><i class="fa-solid fa-user-doctor" style="color: var(--brand-mint);"></i> Vstupní Check-in</h3>
+                    <p>Do 30 dnů absolvujete krátkou (a bezplatnou) ověřovací prohlídku u veterináře, který jedním klikem v aplikaci potvrdí zdraví a identitu zvířete.</p>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-number">KROK 3</div>
+                    <h3><i class="fa-solid fa-arrows-rotate" style="color: var(--brand-mint);"></i> Půlroční Foto-Update</h3>
+                    <p>Jednou za 6 měsíců nahráním nové fotky a aktuální váhy obnovíte Vetiq Pas. Váš doklad tak zůstává neustále platný a aktuální.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="features" id="vyhody">
+        <div class="container">
+            <h2 class="section-title">Chytrá péče pro vašeho parťáka</h2>
+            <p class="section-subtitle">Spojujeme špičkovou veterinární medicínu s evidencí a moderními technologiemi.</p>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-id-card"></i>
+                    </div>
+                    <h3>Oficiální doklad Vetiq</h3>
+                    <p>Ukážete doklad u doktora. Veterinář okamžitě ví, že za léčbu ručí Vetiq.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3>Platba u doktora ihned</h3>
+                    <p>Neplatíte ze svého. Veterinář pošle účet přímo do systému Vetiq k okamžité úhradě.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <i class="fa-solid fa-staff-snake"></i>
+                    </div>
+                    <h3>Od dogy až po křečka</h3>
+                    <p>Jako jediní v ČR evidujeme a pojišťujeme náročné operace i pro králíky, křečky a drobné savce.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="pricing" id="cenik">
+        <div class="container">
+            <h2 class="section-title">Vyberte si úroveň péče</h2>
+            <p class="section-subtitle">Registrace do evidenčního systému Vetiq je ke všem tarifům ZDARMA.</p>
+
+            <div class="pricing-grid">
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>BASIC</h3>
+                        <p>Základní registr + jistota pro úrazy.</p>
+                        <div class="price-amount">190 Kč <span>/ měsíc</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Vetiq Doklad & Registr v ceně</li>
+                        <li><i class="fa-solid fa-check"></i> Krytí úrazů do 30 000 Kč</li>
+                        <li><i class="fa-solid fa-check"></i> Telemedicína 24/7 zdarma</li>
+                        <li><i class="fa-solid fa-check"></i> Vstupní Check-in zdarma</li>
+                    </ul>
+                    <a href="sjednani.html" class="btn btn-yellow">Zvolit Basic</a>
+                </div>
+
+                <div class="price-card popular">
+                    <div class="badge">NEJOBLÍBENĚJŠÍ</div>
+                    <div class="price-header">
+                        <h3>PREMIUM</h3>
+                        <p>Kompletní ochrana včetně nemocí a operací.</p>
+                        <div class="price-amount">390 Kč <span>/ měsíc</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Vetiq Doklad & Registr v ceně</li>
+                        <li><i class="fa-solid fa-check"></i> Krytí nemoci i úrazu do 75 000 Kč</li>
+                        <li><i class="fa-solid fa-check"></i> Telemedicína 24/7 zdarma</li>
+                        <li><i class="fa-solid fa-check"></i> Operace a stomatologie</li>
+                        <li><i class="fa-solid fa-check"></i> Vstupní Check-in zdarma</li>
+                    </ul>
+                    <a href="sjednani.html" class="btn btn-yellow">Zvolit Premium</a>
+                </div>
+
+                <div class="price-card">
+                    <div class="price-header">
+                        <h3>EXKLUZIV VIP</h3>
+                        <p>Maximální luxusní péče bez kompromisů.</p>
+                        <div class="price-amount">690 Kč <span>/ měsíc</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Vetiq Doklad & Registr v ceně</li>
+                        <li><i class="fa-solid fa-check"></i> Neomezený limit plnění</li>
+                        <li><i class="fa-solid fa-check"></i> Roční prevence a očkování</li>
+                        <li><i class="fa-solid fa-check"></i> Zvířecí sanitka zdarma</li>
+                        <li><i class="fa-solid fa-check"></i> Vstupní Check-in zdarma</li>
+                    </ul>
+                    <a href="sjednani.html" class="btn btn-yellow">Zvolit VIP</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer" id="kontakt">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><i class="fa-solid fa-heart-pulse"></i> Vetiq</div>
+                    <p style="color: #a0b0b1; margin-bottom: 15px;">
+                        Vetiq. Nejlepší přítel toho vašeho. Oficiální registr a technologická pojišťovna pro všechny domácí mazlíčky.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Důležité odkazy</h4>
+                    <ul>
+                        <li><a href="obchodni-podminky.html">Obchodní podmínky (VOP)</a></li>
+                        <li><a href="pojistne-podminky.html">Pojistné podmínky (VPP & IPID)</a></li>
+                        <li><a href="gdpr.html">Ochrana osobních údajů (GDPR)</a></li>
+                        <li><a href="cookies.html">Nastavení Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info.vetiq@email.cz</li>
+                        <li><i class="fa-solid fa-phone"></i> +420 725 398 913</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Praha, Česká republika</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Vetiq Insurance Technologies s.r.o. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

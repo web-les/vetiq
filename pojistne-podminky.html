@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VPP & IPID | Vetiq</title>
+    <link rel="icon" type="image/png" href="web_icon.PNG">
+    <link rel="apple-touch-icon" href="apple-touch-icon.PNG">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --brand-mint: #73C7C2;
+            --brand-mint-hover: #5eb5b0;
+            --brand-yellow: #FDE080;
+            --brand-yellow-hover: #fcd55c;
+            --bg-light: #F5F8F8;
+            --text-dark: #2B3839;
+            --text-muted: #667778;
+            --white: #FFFFFF;
+            --font-heading: 'Montserrat', sans-serif;
+            --font-body: 'Open Sans', sans-serif;
+            --radius-card: 20px;
+            --radius-btn: 30px;
+            --shadow-soft: 0 10px 30px rgba(115, 199, 194, 0.15);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.7;
+        }
+
+        h1, h2, h3, h4 { font-family: var(--font-heading); color: var(--text-dark); }
+        a { text-decoration: none; color: inherit; }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* HEADER & NAVIGACE */
+        .header {
+            background-color: var(--white);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.03);
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--brand-mint);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--brand-mint); }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px 20px;
+            border-radius: var(--radius-btn);
+            font-family: var(--font-heading);
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+        }
+
+        .btn-yellow {
+            background-color: var(--brand-yellow);
+            color: var(--text-dark);
+        }
+
+        .btn-yellow:hover {
+            background-color: var(--brand-yellow-hover);
+        }
+
+        /* HERO SEKCE */
+        .page-hero {
+            background: linear-gradient(135deg, var(--brand-mint) 0%, #5eb5b0 100%);
+            color: var(--white);
+            padding: 50px 0;
+            text-align: center;
+            border-bottom-left-radius: 40px;
+            border-bottom-right-radius: 40px;
+            margin-bottom: 40px;
+        }
+
+        .page-hero h1 {
+            color: var(--white);
+            font-size: 2.2rem;
+            margin-bottom: 10px;
+        }
+
+        .page-hero p {
+            font-size: 1rem;
+            color: #f0faf9;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+
+        /* DOKUMENT OBSAH */
+        .legal-content-card {
+            background: var(--white);
+            border-radius: var(--radius-card);
+            padding: 50px;
+            box-shadow: var(--shadow-soft);
+            margin-bottom: 60px;
+        }
+
+        .effective-date {
+            display: inline-block;
+            background: #eef8f7;
+            color: var(--brand-mint-hover);
+            font-weight: 700;
+            font-size: 0.85rem;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 30px;
+        }
+
+        .legal-section {
+            margin-bottom: 35px;
+            border-bottom: 1px solid #edf4f4;
+            padding-bottom: 30px;
+        }
+
+        .legal-section:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+            margin-bottom: 0;
+        }
+
+        .legal-section h2 {
+            font-size: 1.35rem;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-section h2 i {
+            color: var(--brand-mint);
+            font-size: 1.2rem;
+        }
+
+        .legal-section p {
+            margin-bottom: 12px;
+            color: #4a595a;
+            font-size: 0.95rem;
+        }
+
+        .legal-section ul {
+            margin: 10px 0 15px 25px;
+            color: #4a595a;
+            font-size: 0.95rem;
+        }
+
+        .legal-section li {
+            margin-bottom: 8px;
+        }
+
+        .highlight-box {
+            background: var(--bg-light);
+            border-left: 4px solid var(--brand-mint);
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+        }
+
+        .warning-box {
+            background: #fff8f8;
+            border-left: 4px solid #ef4444;
+            padding: 15px 20px;
+            border-radius: 0 12px 12px 0;
+            margin: 15px 0;
+            font-size: 0.9rem;
+            color: #7f1d1d;
+        }
+
+        /* GRID PRO TARIFY */
+        .tariff-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .tariff-item {
+            background: #f8fcff;
+            border: 1px solid #e0eceb;
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .tariff-item h4 {
+            color: var(--brand-mint);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+
+        /* ==========================================================================
+           FOOTER (STYLY PŘESNĚ Z INDEX.HTML)
+           ========================================================================== */
+        .footer {
+            background-color: var(--text-dark);
+            color: var(--white);
+            padding: 60px 0 20px 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand .logo {
+            color: var(--brand-mint);
+            margin-bottom: 15px;
+        }
+
+        .footer-links h4 {
+            color: var(--white);
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #a0b0b1;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--brand-mint);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3d4f50;
+            color: #a0b0b1;
+            font-size: 0.85rem;
+        }
+
+        @media (max-width: 992px) {
+            .footer-grid { grid-template-columns: 1fr; }
+            .legal-content-card { padding: 30px 20px; }
+            .tariff-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-heart-pulse"></i> Vetiq
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html">Domů</a></li>
+                <li><a href="cenik.html">Ceník</a></li>
+                <li><a href="o-nas.html">Kontakt</a></li>
+                <li><a href="sjednani.html" class="btn btn-yellow" style="padding: 10px 20px;">Registrovat & Pojistit</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <div class="page-hero">
+        <div class="container">
+            <h1>Všeobecné pojistné podmínky (VPP & IPID)</h1>
+            <p>Pojistné podmínky pro pojištění veterinární péče a odpovědnosti pro psy, kočky, králíky a drobné savce s registrací Vetiq ID.</p>
+        </div>
+    </div>
+
+    <div class="container">
+
+        <div class="legal-content-card">
+            <span class="effective-date"><i class="fa-regular fa-file-pdf" style="margin-right: 6px;"></i> Verze VPP-VETIQ-2026/01 | Účinnost od 1. 1. 2026</span>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-file-shield"></i> 1. Předmět pojištění a rozsah pojistné ochrany</h2>
+                <p>1.1. Pojištění kryje náklady na nutnou a neodkladnou veterinární péči poskytnutou pojištěnému zvířeti na území České republiky a celé Evropské unie v důsledku úrazu nebo náhlého onemocnění.</p>
+                <p>1.2. Pojištěným zvířetem je zvíře (pes, kočka, králík nebo drobný savec), které má platně vygenerované <strong>Vetiq ID</strong> a řádně nahrány 3 verifikační fotky v systému Vetiq Photo-ID.</p>
+
+                <div class="tariff-grid">
+                    <div class="tariff-item">
+                        <h4>BASIC (190 Kč/měs)</h4>
+                        <p><strong>Pojistný limit:</strong> 30 000 Kč / rok</p>
+                        <p><strong>Krytí:</strong> Akutní úrazy, úrazové operace, hospitace + 24/7 Telemedicína.</p>
+                        <p><strong>Spoluúčast:</strong> 10 % (min. 500 Kč)</p>
+                    </div>
+                    <div class="tariff-item">
+                        <h4>PREMIUM (390 Kč/měs)</h4>
+                        <p><strong>Pojistný limit:</strong> 75 000 Kč / rok</p>
+                        <p><strong>Krytí:</strong> Úrazy, akutní i chronická onemocnění, operace, diagnostika (RTG, USG, MRI), léky na předpis.</p>
+                        <p><strong>Spoluúčast:</strong> 10 % (min. 500 Kč)</p>
+                    </div>
+                    <div class="tariff-item">
+                        <h4>VIP EXKLUZIV (690 Kč/měs)</h4>
+                        <p><strong>Pojistný limit:</strong> Neomezený</p>
+                        <p><strong>Krytí:</strong> Kompletní péče bez limitu + preventivní prohlídky, očkování a zubní péče do 5 000 Kč / rok.</p>
+                        <p><strong>Spoluúčast:</strong> 0 %</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-hourglass-half"></i> 2. Čekací doby</h2>
+                <p>2.1. Pojistná ochrana nezačíná okamžitě po sjednání, ale až po uplynutí stanovených čekacích dob od počátku pojištění:</p>
+                <ul>
+                    <li><strong>Úrazy a úrazové operace:</strong> Bez čekací doby (platí 24 hodin od sjednání).</li>
+                    <li><strong>Běžná onemocnění:</strong> 30 kalendářních dnů.</li>
+                    <li><strong>Ortopedická onemocnění a operace páteře/kloubů:</strong> 6 měsíců.</li>
+                </ul>
+                <div class="highlight-box">
+                    <strong>🎁 Výjimka – Vetiq Vstupní Check-in zdarma:</strong> Pokud majitel navštíví do 30 dnů od sjednání jakéhokoliv schváleného veterinárního lékaře k absolvování Vetiq Vstupního Check-in vyšetření, čekací doba na běžná onemocnění se zkracuje na 0 dnů ode dne potvrzení lékařem.
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-ban"></i> 3. Výluky z pojištění (Co pojištění nekryje)</h2>
+                <p>3.1. Pojišťovna neposkytne pojistné plnění v následujících případech:</p>
+                <ul>
+                    <li>Onemocnění nebo vady, které existovaly nebo se projevily před počátkem pojištění (pre-existing conditions).</li>
+                    <li>Kastrace, sterilizace, kosmetické zákroky nebo plastické operace bez zdravotní indikace.</li>
+                    <li>Preventivní úkony (očkování, odčervení, čipování), s výjimkou tarifu VIP EXKLUZIV.</li>
+                    <li>Stomatologické zákroky a čištění zubního kamene (pokud nejsou přímým důsledkem úrazu nebo součástí tarifu VIP).</li>
+                    <li>Náklady na krmivo, klinické diety, doplňky stravy a šampony.</li>
+                    <li>Zranění způsobená úmyslně majitelem, týráním nebo hrubou nedbalostí.</li>
+                </ul>
+                <div class="warning-box">
+                    <strong>⚠️ Důležité upozornění:</strong> U zvířat registrovaných systémem Vetiq Photo-ID bude před výplatou plnění ověřována totožnost zvířete. V případě záměny zvířete bude pojistné plnění zamítnuto a smlouva s okamžitou platností ukončena.
+                </div>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-notes-medical"></i> 4. Postup při pojistné události a likvidace</h2>
+                <p>4.1. V případě zdravotních komplikací zvířete navštivte kteréhokoliv licencovaného veterinárního lékaře v ČR nebo EU.</p>
+                <p>4.2. Při příjmu u veterináře předložte váš <strong>Vetiq Pas</strong> (v mobilní aplikaci nebo PDF) obsahující vaše unikátní Vetiq ID.</p>
+                <p>4.3. Po ošetření uhradíte účet u veterináře a prostřednictvím portálu Vetiq nahrajete:</p>
+                <ul>
+                    <li>Lékařskou zprávu s diagnózou a podrobným popisem úkonů.</li>
+                    <li>Položkový účet / fakturu za provedené ošetření.</li>
+                    <li>Aktuální verifikační fotku zvířete z dne ošetření.</li>
+                </ul>
+                <p>4.4. Pojistné plnění je vyplaceno na bankovní účet majitele do 3 pracovních dnů od schválení podkladů likvidátorem.</p>
+            </div>
+
+            <div class="legal-section">
+                <h2><i class="fa-solid fa-file-contract"></i> 5. Informační dokument o pojistném produktu (IPID)</h2>
+                <p>5.1. Standardizovaný dokument IPID v souladu se směrnicí EU (IDD) obsahuje přehledné shrnutí pojistného krytí, limitů a výluk.</p>
+                <p>5.2. Kompletní IPID dokument si můžete stáhnout ve formátu PDF: <a href="#" style="color: var(--brand-mint); font-weight: 700;"><i class="fa-solid fa-file-pdf"></i> Stáhnout IPID Vetiq (PDF)</a>.</p>
+            </div>
+
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="logo"><i class="fa-solid fa-heart-pulse"></i> Vetiq</div>
+                    <p style="color: #a0b0b1; margin-bottom: 15px;">
+                        Vetiq. Nejlepší přítel toho vašeho. Oficiální registr a technologická pojišťovna pro všechny domácí mazlíčky.
+                    </p>
+                </div>
+                <div class="footer-links">
+                    <h4>Důležité odkazy</h4>
+                    <ul>
+                        <li><a href="obchodni-podminky.html">Obchodní podmínky (VOP)</a></li>
+                        <li><a href="pojistne-podminky.html">Pojistné podmínky (VPP & IPID)</a></li>
+                        <li><a href="gdpr.html">Ochrana osobních údajů (GDPR)</a></li>
+                        <li><a href="cookies.html">Nastavení Cookies</a></li>
+                    </ul>
+                </div>
+                <div class="footer-links">
+                    <h4>Kontakt</h4>
+                    <ul>
+                        <li><i class="fa-solid fa-envelope"></i> info.vetiq@email.cz</li>
+                        <li><i class="fa-solid fa-phone"></i> +420 725 398 913</li>
+                        <li><i class="fa-solid fa-location-dot"></i> Praha, Česká republika</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2026 Vetiq Insurance Technologies s.r.o. Všechna práva vyhrazena.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
